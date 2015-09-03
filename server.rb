@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/json'
 require 'httparty'
 require 'pry'
+require 'snooby'
 
 get '/api/v1/tags' do
   response = HTTParty.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow')
@@ -13,4 +14,7 @@ get '/api/v1/tags' do
     end
   end
   json tags
+end
+
+get '/' do
 end
