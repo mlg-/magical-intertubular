@@ -43,6 +43,7 @@ You'll also see JSON a lot again! As you know, JSON stands for JavaScript Object
   - [Wordnik API](http://developer.wordnik.com/docs.html)
   - [Reddit API](https://www.reddit.com/dev/api)
   - [Github API](https://developer.github.com/v3/)
+- Look for "developer-friendly" language--easy to navigate docs, no need to pay for a basic usage key, that kind of thing. 
 
 ## But How Do I Actually Make an API Call?
 One nice and easy way to get started is using [HTTParty](https://github.com/jnunemaker/httparty), which is a library that lets us make HTTP requests with Ruby.
