@@ -71,8 +71,8 @@ get '/api/v1/tags' do
 end
 ```
 
-## Can't find the API you want?
-- Make it!
+## Can't Find the API You Want?
+- Make it! Be the API you want to see in the world!
 
 
 
