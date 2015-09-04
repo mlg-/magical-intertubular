@@ -23,9 +23,11 @@ At Launch when we talk about APIs, we're usually referring to web APIs. Tons of 
 
 ## Standardization! REST, JSON
 
-- REST stands for Representational State Transfer. It's a software architecture style that uses a stateless request protocol that usually is implemented with HTTP. 
-- REST also refers to some general standards for setting up external APIs for people to use. This is what people mean when they say the API for their site is RESTful. [This site](http://www.restapitutorial.com/lessons/whatisrest.html) is a great tutorial on RESTful principles and is a good idea to bookmark and return to later.
-- You'll also see JSON a lot again! As you know, JSON stands for JavaScript Object Notation, and it allows an API to return data in a standardized format. Well-designed, RESTful APIs will nearly always return JSON.
+REST stands for Representational State Transfer. It's a software architecture style that uses a stateless request protocol that usually is implemented with HTTP. 
+
+REST also refers to some general standards for setting up external APIs for people to use. This is what people mean when they say the API for their site is RESTful. [This site](http://www.restapitutorial.com/lessons/whatisrest.html) is a great tutorial on RESTful principles and is a good idea to bookmark and return to later.
+
+You'll also see JSON a lot again! As you know, JSON stands for JavaScript Object Notation, and it allows an API to return data in a standardized format. Well-designed, RESTful APIs will nearly always return JSON.
 - Examples of what JSON from an api look like:
   - Recent pictures of kittens [on reddit](https://www.reddit.com/r/pics/search.json?q=kittens&sort=new)
   - Random list of words [from Wordnik](http://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5)
@@ -41,5 +43,37 @@ At Launch when we talk about APIs, we're usually referring to web APIs. Tons of 
   - [Wordnik API](http://developer.wordnik.com/docs.html)
   - [Reddit API](https://www.reddit.com/dev/api)
   - [Github API](https://developer.github.com/v3/)
+
+## But How Do I Actually Make an API Call?
+One nice and easy way to get started is using [HTTParty](https://github.com/jnunemaker/httparty), which is a library that lets us make HTTP requests with Ruby.
+
+## Let's Make an API call *and* Make Our Own API!
+- require 'sinatra/json'
+- get '/api/v1/tags'
+
+```ruby
+require 'sinatra'
+require 'sinatra/json'
+require 'httparty'
+require 'pry'
+
+get '/api/v1/tags' do
+  response = HTTParty.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow')
+  tags = Hash.new 0
+  questions = response["items"]
+  questions.each do |question|
+    question["tags"].each do |tag|
+      tags[tag] += 1
+    end
+  end
+  json tags
+end
+```
+
+## Can't find the API you want?
+- Make it!
+
+
+
 
 
